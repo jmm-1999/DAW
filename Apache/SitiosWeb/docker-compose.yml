@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  apache1:
+    image: php-apache-mysql:8.0-xdebug3.0
+    container_name: apache1
+    ports:
+      # MOdificamos el puerto por el 82 por problemas en el host doméstico
+      - 82:80
+    environment:
+      XDEBUG_CONFIG: client_host=host.docker.internal
+    volumes:
+      - ./webapp1:/var/www/html
+    networks:
+      - mi_red
+
+  apache2:
+    image: php-apache-mysql:8.0-xdebug3.0
+    container_name: apache2
+    ports:
+      - 81:80
+    environment:
+      XDEBUG_CONFIG: client_host=host.docker.internal
+    volumes:
+      - ./webapp2:/var/www/html
+    networks:
+      mi_red:
+        aliases:
+          - agencia.com
+          - miblog.com
+          - misnoticias.com
+          - agencia.es
+          - miblog.es
+          - misnoticias.es
+
+networks:
+  mi_red:
+
+volumes:
+  webapp1:
+  webapp2:

@@ -1,0 +1,3 @@
+COMANDO PARA CREAR IMAGEN A PARTIR DE DOCKERFILE Y FICHERO .YML
+
+docker build -t php-apache-mysql:8.0-xdebug3.0 -f nombreimagen .

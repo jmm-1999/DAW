@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  nginx1:
+    image: nginx
+    container_name: nginx1
+    ports:
+      - 82:80
+    volumes:
+      - ./webapp1:/usr/share/nginx/html
+    networks:
+      - mi_red
+      
+  nginx2:
+    image: nginx
+    container_name: nginx2
+    ports:
+      - 81:80
+    volumes:
+      - ./webapp2:/usr/share/nginx/html
+    networks:
+      mi_red:
+        aliases:
+          - agencia.com
+          - miblog.com
+          - misnoticias.com
+          - agencia.es
+          - miblog.es
+          - misnoticias.es
+
+networks:
+  mi_red:
+
+volumes:
+  webapp1:
+  webapp2:
